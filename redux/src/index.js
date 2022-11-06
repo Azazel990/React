@@ -1,37 +1,27 @@
 import React from 'react'
+import ReactDOM  from 'react-dom'
+import App from './App'
+import {Provider} from 'react-redux'
 import { legacy_createStore as createStore} from 'redux'
+import loggedReducer from './loggedReducer'
+import counterReducer from './counterReducer'
+import { combineReducers } from 'redux'
+import { increment } from './functional/actions'
+import { decrement } from './functional/actions'
 
-//actions
-const increment = () => {
-    return {
-        type : 'INCREMENT'
-    }
-}
+   const allReducers = combineReducers({
+        counter : counterReducer,
+        isLogged : loggedReducer
+    })
 
-const decrement = () => {
-    return {
-        type : 'DECREMENT'
-    }
-}
+const store = createStore(allReducers)
 
-//Reducer
+console.log(store)
 
-const count = (state= 0,action) => {
-    switch(action.type){
-        case 'INCREMENT' :
-            return state + 1
-        case 'DECREMENT' : 
-            return state - 1
-    }
-}
-
-//Creating a store 
-const store = createStore(count)
-
-
-//Calling the action
-store.dispatch(increment())
-
-//Subscribe to store
-store.subscribe(console.log(store.getState()));
+ReactDOM.render(
+<Provider store={store}>
+<App/>
+</Provider>,
+document.getElementById('root')
+);
 
