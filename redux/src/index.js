@@ -6,8 +6,6 @@ import { legacy_createStore as createStore} from 'redux'
 import loggedReducer from './loggedReducer'
 import counterReducer from './counterReducer'
 import { combineReducers } from 'redux'
-import { increment } from './functional/actions'
-import { decrement } from './functional/actions'
 
    const allReducers = combineReducers({
         counter : counterReducer,
