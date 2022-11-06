@@ -1,33 +1,37 @@
-import store from "./store";
+import React from 'react'
+import { legacy_createStore as createStore} from 'redux'
 
-
-store.dispatch({
-    type : 'bugAdded',
-    payload : {
-        description : 'Bug 1',
+//actions
+const increment = () => {
+    return {
+        type : 'INCREMENT'
     }
-})
-store.dispatch({
-    type : 'bugAdded',
-    payload : {
-        description : 'Bug 2',
+}
+
+const decrement = () => {
+    return {
+        type : 'DECREMENT'
     }
-})
+}
 
+//Reducer
 
-store.dispatch({
-    type : 'bugResolved',
-    payload : {
-        id : 1
+const count = (state= 0,action) => {
+    switch(action.type){
+        case 'INCREMENT' :
+            return state + 1
+        case 'DECREMENT' : 
+            return state - 1
     }
-})
-// store.dispatch({
-//     type : 'bugRemoved',
-//     payload : {
-//         id : 1
-//     }
-// })
+}
+
+//Creating a store 
+const store = createStore(count)
 
 
+//Calling the action
+store.dispatch(increment())
 
-console.log(store.getState())
+//Subscribe to store
+store.subscribe(console.log(store.getState()));
+
