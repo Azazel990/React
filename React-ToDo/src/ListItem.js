@@ -4,11 +4,10 @@ import { GrCheckmark } from "react-icons/gr";
 import { FaTrash } from "react-icons/fa";
 import { MdReplayCircleFilled } from "react-icons/md";
 import {ACTIONS} from './App.js'
-
 export default function ListItem(props) {
     const item = props.item
     const dispatch = props.dispatch
-    const style = props.opacity ? 'listItem d-flex justify-space-between op' : 'listItem d-flex justify-space-between';
+    const style = props.opacity ? 'listItem d-flex justify-space-between op w-100' : 'listItem d-flex justify-space-between w-100';
     return (
         <div className={style} >
             <div className="taskName">

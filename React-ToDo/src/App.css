@@ -10,6 +10,9 @@
 .justify-space-between{
     justify-content: space-between;
 }
+.w-100{
+  width: 100% !important;
+}
 .btn{
   position: relative;
   margin: 0 15px;

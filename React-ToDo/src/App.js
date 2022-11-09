@@ -1,6 +1,8 @@
 import { useEffect, useReducer, useState } from 'react';
 import ListItem from './ListItem';
 import './App.css';
+import { AnimateOnChange } from 'react-animation'
+import {bounceIn,bounceOut} from 'react-animation'
 
 
 const reducer = (todo,action) => {
