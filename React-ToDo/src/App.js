@@ -15,14 +15,13 @@ const reducer = (todo,action) => {
 
       case ACTIONS.REMOVE_TODO : 
           return todo.filter(todo => todo.id !== action.payload.id)
-
       default : return todo
   }
 }
 export const ACTIONS = {
   ADD_TODO : 'add-todo',
   COMPLETE_TODO : 'complete-todo',
-  REMOVE_TODO : 'remove-todo'
+  REMOVE_TODO : 'remove-todo',
 }
 
 const newToDo = (name) => {
@@ -32,10 +31,9 @@ const newToDo = (name) => {
     completed : false
   }
 }
-
 export default function App() {
-
-  const [todo,dispatch] = useReducer(reducer,[]);
+  
+  const [todo,dispatch] = useReducer(reducer,JSON.parse(window.localStorage.getItem('list')) || []);
   const [name,setName] = useState('');
 
   const handleSubmit = () => {
@@ -60,8 +58,10 @@ let input = ''
  }, 1000);
 
 
- useEffect(()=> {
- },[todo])
+useEffect(()=> {
+    window.localStorage.setItem('list',JSON.stringify(todo))
+},[todo])
+
   return (
     <div className="App d-flex justify-content-center">
           
@@ -78,7 +78,7 @@ let input = ''
             <div className="taksList">
               {
                 todo.map(item => (
-                  item.completed === false && <ListItem item={item} dispatch={dispatch}/>
+                  item.completed === false && <ListItem item={item} dispatch={dispatch} opacity={false}/>
                 ))
               }
             </div>     
@@ -90,7 +90,7 @@ let input = ''
                <div className="taksList">
               {
                 todo.map(item => (
-                  item.completed === true && <ListItem item={item} dispatch={dispatch}/>
+                  item.completed === true && <ListItem item={item} dispatch={dispatch} opacity={true}/>
                 ))
               }
 

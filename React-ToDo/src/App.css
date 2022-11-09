@@ -15,7 +15,9 @@
   margin: 0 15px;
   padding: 5px 25px;
 }
-
+.op{
+  opacity: 0.4;
+}
 .App {
   margin: 0;
   padding: 0;
