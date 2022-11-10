@@ -16,7 +16,7 @@ export default function ListItem(props) {
             <div className='btnDone' >
                 {!item.completed && <GrCheckmark title='Task Done' size='1.5em' className='m-3' onClick={()=> dispatch({type : ACTIONS.COMPLETE_TODO, payload : {id : item.id}})}/>} 
                  {item.completed && <MdReplayCircleFilled title='Undo Task' size='1.5em' className='m-3' onClick={()=> dispatch({type : ACTIONS.COMPLETE_TODO, payload : {id : item.id} })}/>} 
-                <FaTrash title='Delete Task' size='1.5em' className='m-3' onClick={()=> dispatch({type : ACTIONS.REMOVE_TODO, payload : {id : item.id}})} />
+                <FaTrash title='Delete Task' size='1.5em' className='m-3' onClick={()=> dispatch({type : ACTIONS.REMOVE_TODO, payload : {id : item.id,name : item.name}})} />
             </div>
         </div>
     )
